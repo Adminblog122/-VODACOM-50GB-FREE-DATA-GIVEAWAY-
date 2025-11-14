@@ -608,6 +608,57 @@
 <!-- Bootstrap 5 JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
+
+
+
+     <script>
+        // Use a counter variable for the like count
+        let likes = 179000;
+        const likeCounterEl = document.getElementById('reaction-counter');
+        const typingIndicatorEl = document.getElementById('typing-indicator');
+
+        /**
+         * Updates the like count when the 'Like' button is clicked.
+         */
+        function updateLikeCount() {
+            likes += 1; // Increment the count
+            // Format the number to show 'k' for thousands
+            const formattedLikes = (likes / 1000).toFixed(1) + 'k';
+            likeCounterEl.textContent = formattedLikes;
+        }
+
+        /**
+         * Simple simulation of the 'is writing' status visibility.
+         */
+        function simulateTypingStatus() {
+            let isTyping = true;
+            setInterval(() => {
+                if (isTyping) {
+                    typingIndicatorEl.classList.add('opacity-0');
+                } else {
+                    typingIndicatorEl.classList.remove('opacity-0');
+                }
+                isTyping = !isTyping;
+            }, 3000); // Toggles visibility every 3 seconds
+        }
+
+        window.onload = function() {
+            // Initialize the counter display
+            updateLikeCount();
+            // Start the typing status simulation
+            simulateTypingStatus();
+
+            // Handle image loading fallback for placeholders
+            const images = document.querySelectorAll('img[onerror]');
+            images.forEach(img => {
+                img.onerror = function() {
+                    // Fallback to a different placeholder if original fails
+                    this.src = 'https://placehold.co/32x32/888888/ffffff?text=U';
+                };
+            });
+        };
+    </script>
+    <!-- ////// -->
 <script>
     // --- Global State Variables ---
     let userData = {};
