@@ -105,28 +105,6 @@
             0% { opacity: 0; transform: translateY(-50px); }
             100% { opacity: 1; transform: translateY(0); }
         }
-
-        /* Comment Section */
-        .comment-section {
-            background-color: #f7f7f7;
-            border-top: 1px solid #eee;
-        }
-        .comment-card {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 12px;
-            padding: 10px;
-            margin-bottom: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-        }
-        .comment-name {
-            color: var(--vodacom-blue);
-            font-weight: 600;
-        }
-        .comment-date {
-            font-size: 0.75rem;
-            color: #999;
-        }
         
         /* Utility */
         .page-content {
@@ -146,6 +124,46 @@
             background-color: var(--vodacom-blue);
             transition: width 0.5s ease-in-out;
         }
+
+        .chat-bubble-left {
+            background-color: #e4e6eb;
+            max-width: 85%;
+            word-wrap: break-word;
+            padding: 8px 12px;
+            border-radius: 18px;
+            border-bottom-left-radius: 4px;
+        }
+        .chat-bubble-right {
+            background-color: #0084ff;
+            color: white;
+            max-width: 85%;
+            word-wrap: break-word;
+            padding: 8px 12px;
+            border-radius: 18px;
+            border-bottom-right-radius: 4px;
+        }
+
+        /* Styling for the complex reaction SVGs */
+        .reaction-icon {
+            width: 16px;
+            height: 16px;
+            display: block;
+            margin-right: -4px;
+        }
+
+        /* Custom scrollbar for chat area (optional but helps aesthetics) */
+        .chat-scroll {
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+        .chat-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .chat-scroll::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+            border-radius: 3px;
+        }
+
     </style>
 </head>
 <body>
@@ -192,25 +210,230 @@
             <div class="text-center mb-5">
                 <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhYWKSqQSdFIMeAMtOZIQlSoOUIAGQ27pWbEErGHcSnVOYEIdQjtVQaT7p3HbmZaF3g-k800WS6_kTZBo_Rf_meLzFZrheb54Llpp4hyphenhyphenBLtGVV5Fl1gzGJ3Q_zCL1OpcexXzUtfFT8bB6_dE7hFoEPHwB0RqtBhNdP1so452B_l-Dz9xOKLPd-gdDmUsLI/s320/FsUPojxqieu4KEsJG21Q2A6SlSeQufxhPjyXemZp.jpg" style=width:100%  height:auto  display:block; alt="Limited Time Offer">
             </div>
-
+<!-- //////////////////////////// -->
             <!-- Fake Comment Section -->
-            <h4 class="text-dark fw-bold border-bottom pb-2 mb-3">Recent Claims (Live)</h4>
-            <div class="comment-section p-3 rounded-lg">
-                <div class="comment-card">
-                    <span class="comment-name">Thabo M.</span> <span class="comment-date float-end">5 seconds ago</span>
-                    <p class="mb-0 small">"It actually worked! Got my 50GB confirmation already. Thanks, Vodacom!"</p>
+            <!-- REACTIONS BAR -->
+                <div class="flex items-center space-x-1 mb-3 text-sm text-gray-500">
+                    <div class="flex">
+                        <!-- Like Reaction SVG (Original complex SVG retained for appearance) -->
+                        <span class="reaction-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 16 16">
+                                <defs>
+                                    <linearGradient id="r" x1="50%" x2="50%" y1="0%" y2="100%">
+                                        <stop offset="0%" stop-color="#18AFFF"></stop>
+                                        <stop offset="100%" stop-color="#0062DF"></stop>
+                                    </linearGradient>
+                                    <filter id="e" width="118.8%" height="118.8%" x="-9.4%" y="-9.4%" filterUnits="objectBoundingBox">
+                                        <feGaussianBlur in="SourceAlpha" result="shadowBlurInner1" stdDeviation="1"></feGaussianBlur>
+                                        <feOffset dy="-1" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
+                                        <feComposite in="shadowOffsetInner1" in2="SourceAlpha" k2="-1" k3="1" operator="arithmetic" result="shadowInnerInner1"></feComposite>
+                                        <feColorMatrix in="shadowInnerInner1" values="0 0 0 0 0 0 0 0 0 0.299356041 0 0 0 0 0.681187726 0 0 0 0.3495684 0"></feColorMatrix>
+                                    </filter>
+                                    <path id="k" d="M8 0a8 8 0 00-8 8 8 8 0 1016 0 8 8 0 00-8-8z"></path>
+                                </defs>
+                                <g fill="none">
+                                    <use fill="url(#r)" xlink:href="#k"></use>
+                                    <use fill="black" filter="url(#e)" xlink:href="#k"></use>
+                                    <path fill="white" d="M12.162 7.338c.176.123.338.245.338.674 0 .43-.229.604-.474.725a.73.73 0 01.089.546c-.077.344-.392.611-.672.69.121.194.159.385.015.62-.185.295-.346.407-1.058.407H7.5c-.988 0-1.5-.546-1.5-1V7.665c0-1.23 1.467-2.275 1.467-3.13L7.361 3.47c-.005-.065.008-.224.058-.27.08-.079.301-.2.635-.2.218 0 .363.041.534.123.581.277.732.978.732 1.542 0 .271-.414 1.083-.47 1.364 0 0 .867-.192 1.879-.199 1.061-.006 1.749.19 1.749.842 0 .261-.219.523-.316.666zM3.6 7h.8a.6.6 0 01.6.6v3.8a.6.6 0 01-.6.6h-.8a.6.6 0 01-.6-.6V7.6a.6.6 0 01.6-.6z"></path>
+                                </g>
+                            </svg>
+                        </span>
+                        <!-- Heart Reaction SVG (Original complex SVG retained for appearance) -->
+                        <span class="reaction-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 16 16">
+                                <defs>
+                                    <linearGradient id="a" x1="50%" x2="50%" y1="0%" y2="100%">
+                                        <stop offset="0%" stop-color="#FF6680"></stop>
+                                        <stop offset="100%" stop-color="#E61739"></stop>
+                                    </linearGradient>
+                                    <filter id="c" width="118.8%" height="118.8%" x="-9.4%" y="-9.4%" filterUnits="objectBoundingBox">
+                                        <feGaussianBlur in="SourceAlpha" result="shadowBlurInner1" stdDeviation="1"></feGaussianBlur>
+                                        <feOffset dy="-1" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
+                                        <feComposite in="shadowOffsetInner1" in2="SourceAlpha" k2="-1" k3="1" operator="arithmetic" result="shadowInnerInner1"></feComposite>
+                                        <feColorMatrix in="shadowInnerInner1" values="0 0 0 0 0.710144928 0 0 0 0 0 0 0 0 0 0.117780134 0 0 0 0.349786932 0"></feColorMatrix>
+                                    </filter>
+                                    <path id="b" d="M8 0a8 8 0 100 16A8 8 0 008 0z"></path>
+                                </defs>
+                                <g fill="none">
+                                    <use fill="url(#a)" xlink:href="#b"></use>
+                                    <use fill="black" filter="url(#c)" xlink:href="#b"></use>
+                                    <path fill="white" d="M10.473 4C8.275 4 8 5.824 8 5.824S7.726 4 5.528 4c-2.114 0-2.73 2.222-2.472 3.41C3.736 10.55 8 12.75 8 12.75s4.265-2.2 4.945-5.34c.257-1.188-.36-3.41-2.472-3.41"></path>
+                                </g>
+                            </svg>
+                        </span>
+                    </div>
+
+                    <span class="font-semibold text-gray-700">James and Esther Wambui</span>
+                    <span class="text-xs">and</span>
+                    <span id="reaction-counter" class="font-semibold text-gray-700">179k</span>
+                    <span class="text-xs">others</span>
+                    <span class="mx-2">•</span>
+                    <span id="comment-counter" class="font-semibold text-gray-700">634</span>
+                    <span class="text-xs">comments</span>
+                    <span class="mx-2">•</span>
+                    <span class="text-xs">share</span>
                 </div>
-                <div class="comment-card">
-                    <span class="comment-name">Zinhle K.</span> <span class="comment-date float-end">15 seconds ago</span>
-                    <p class="mb-0 small">"This is real, guys! So easy to claim. Highly recommend."</p>
+                
+                <hr class="mb-3">
+
+                <!-- ACTIONS BAR -->
+                <div class="flex justify-around mb-4 border-b border-gray-200 pb-2">
+                    <button class="flex items-center space-x-1 p-2 rounded-lg hover:bg-gray-100 transition duration-150 text-gray-600 font-semibold" onclick="updateLikeCount()">
+                        <span class="w-5 h-5">
+                            <!-- Like Action SVG (Simplified for clarity) -->
+                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.043 9.043 0 01.99 1.487l.21 3.325c.114.12.181.25.228.397.047.146.069.299.066.452.001.152-.02.302-.066.446-.047.144-.114.28-.228.394l-.21 3.325a9.043 9.043 0 01-.99 1.487c-.498.634-1.225 1.08-2.031 1.08H5.5c-.806 0-1.533-.446-2.031-1.08a9.043 9.043 0 01-.99-1.487L2.272 15c-.114-.12-.181-.25-.228-.397-.047-.146-.069-.299-.066-.452.001-.152-.02-.302-.066-.446-.047-.144-.114-.28-.228-.394l.21-3.325c.114-.12.181-.25.228-.397.047-.146.069-.299.066-.452-.001-.152.02-.302.066-.446.047-.144.114-.28.228-.394l-.21-3.325zM12 12h4"></path>
+                            </svg>
+                        </span>
+                        <span class="text-xs sm:text-sm">Like</span>
+                    </button>
+                    
+                    <button class="flex items-center space-x-1 p-2 rounded-lg hover:bg-gray-100 transition duration-150 text-gray-600 font-semibold" onclick="document.getElementById('write').focus()">
+                        <span class="w-5 h-5">
+                            <!-- Comment Action SVG (Simplified for clarity) -->
+                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3h9m-6 5.25v-3m1-1.5H9a.75.75 0 00-.75.75v5.25c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75V15m-1.5-1.5H15V13.5a.75.75 0 00-.75-.75H13.5z"></path>
+                            </svg>
+                        </span>
+                        <span class="text-xs sm:text-sm">Comment</span>
+                    </button>
+
+                    <button class="flex items-center space-x-1 p-2 rounded-lg hover:bg-gray-100 transition duration-150 text-gray-600 font-semibold">
+                        <span class="w-5 h-5">
+                            <!-- Share Action SVG (Simplified for clarity) -->
+                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.957a2.25 2.25 0 01-3.18 0l-3.23-3.23A2.25 2.25 0 013.23 4.54l3.23 3.23a2.25 2.25 0 013.18 0l1.76-1.76a2.25 2.25 0 00-3.18-3.18l-3.23 3.23a2.25 2.25 0 000 3.18l.11.11M16.783 13.043a2.25 2.25 0 013.18 0l3.23 3.23a2.25 2.25 0 01-3.18 3.18l-3.23-3.23a2.25 2.25 0 010-3.18l-1.76 1.76a2.25 2.25 0 003.18 3.18l3.23-3.23a2.25 2.25 0 000-3.18l-.11-.11"></path>
+                            </svg>
+                        </span>
+                        <span class="text-xs sm:text-sm">Share</span>
+                    </button>
                 </div>
-                <div class="comment-card">
-                    <span class="comment-name">Lerato P.</span> <span class="comment-date float-end">35 seconds ago</span>
-                    <p class="mb-0 small">"Just submitted my details. Waiting for the confirmation now."</p>
+
+                <!-- CONVERSATION / COMMENTS AREA -->
+                <div class="chat__conversation chat-scroll space-y-4 pr-1">
+
+                    <!-- Comment 1 (Left) -->
+                    <div class="flex items-start space-x-2">
+                        <img src="https://placehold.co/32x32/78A2CF/ffffff?text=M" alt="Mia24" class="w-8 h-8 rounded-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/32x32/78A2CF/ffffff?text=M';" />
+                        <div class="flex flex-col">
+                            <div class="chat-bubble-left">
+                                <span class="font-semibold text-gray-800 text-sm">Mia24</span>
+                                <span class="text-gray-700 text-sm block">I am very thankful. I received this gift successfully. Please inform me if there is a similar offer again.</span>
+                            </div>
+                            <div class="flex space-x-3 ml-3 mt-1 text-xs text-gray-500 font-semibold">
+                                <span class="hover:underline cursor-pointer">Like</span>
+                                <span class="hover:underline cursor-pointer">Reply</span>
+                                <span>31m</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comment 2 (Left) -->
+                    <div class="flex items-start space-x-2">
+                        <img src="https://placehold.co/32x32/1D9FEE/ffffff?text=L" alt="Leo_Sky" class="w-8 h-8 rounded-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/32x32/1D9FEE/ffffff?text=L';" />
+                        <div class="flex flex-col">
+                            <div class="chat-bubble-left">
+                                <span class="font-semibold text-gray-800 text-sm">Leo_Sky</span>
+                                <span class="text-gray-700 text-sm block">Thank you very much for the 100GB. It was very useful for me at this time.</span>
+                            </div>
+                            <div class="flex space-x-3 ml-3 mt-1 text-xs text-gray-500 font-semibold">
+                                <span class="hover:underline cursor-pointer">Like</span>
+                                <span class="hover:underline cursor-pointer">Reply</span>
+                                <span>221m</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Comment 3 (Left) -->
+                    <div class="flex items-start space-x-2">
+                        <img src="https://placehold.co/32x32/4CAF50/ffffff?text=N" alt="Nova88" class="w-8 h-8 rounded-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/32x32/4CAF50/ffffff?text=N';" />
+                        <div class="flex flex-col">
+                            <div class="chat-bubble-left">
+                                <span class="font-semibold text-gray-800 text-sm">Nova88</span>
+                                <span class="text-gray-700 text-sm block">I received the 100GB today. It was important and arrived at the right time.</span>
+                            </div>
+                            <div class="flex space-x-3 ml-3 mt-1 text-xs text-gray-500 font-semibold">
+                                <span class="hover:underline cursor-pointer">Like</span>
+                                <span class="hover:underline cursor-pointer">Reply</span>
+                                <span>311m</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Comment 4 (Right / Current User) -->
+                    <div class="flex justify-end space-x-2">
+                        <div class="flex flex-col items-end">
+                            <div class="chat-bubble-right">
+                                <span class="font-semibold text-white text-sm">Ella</span>
+                                <span class="text-white text-sm block">Wonderful ... even you got 100GB like me?</span>
+                            </div>
+                            <div class="flex space-x-3 mr-3 mt-1 text-xs text-gray-500 font-semibold">
+                                <span class="hover:underline cursor-pointer">Like</span>
+                                <span class="hover:underline cursor-pointer">Reply</span>
+                                <span>46m</span>
+                            </div>
+                        </div>
+                        <img src="https://placehold.co/32x32/FF9800/ffffff?text=E" alt="Ella" class="w-8 h-8 rounded-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/32x32/FF9800/ffffff?text=E';" />
+                    </div>
+
+                    <!-- Typing Indicator -->
+                    <span id="typing-indicator" class="text-xs text-gray-500 ml-10">Jonas <span class="text-gray-700 font-semibold">is writing a comment...</span></span>
+                    
+                    <!-- Comment 5 (Left) -->
+                    <div class="flex items-start space-x-2">
+                        <img src="https://placehold.co/32x32/9C27B0/ffffff?text=J" alt="Jake2025" class="w-8 h-8 rounded-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/32x32/9C27B0/ffffff?text=J';" />
+                        <div class="flex flex-col">
+                            <div class="chat-bubble-left">
+                                <span class="font-semibold text-gray-800 text-sm">Jake2025</span>
+                                <span class="text-gray-700 text-sm block">I feel a little disappointed because I only received 75GB.</span>
+                            </div>
+                            <div class="flex space-x-3 ml-3 mt-1 text-xs text-gray-500 font-semibold">
+                                <span class="hover:underline cursor-pointer">Like</span>
+                                <span class="hover:underline cursor-pointer">Reply</span>
+                                <span>103m</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <!-- WRITE / INPUT AREA -->
+                <div class="mt-4 flex items-center space-x-2 border-t pt-4">
+                    <input type="text" id="write" placeholder="Write a comment..." class="flex-grow p-2 pl-4 bg-gray-100 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm" />
+                    
+                    <!-- Icon buttons -->
+                    <div class="flex space-x-1">
+                        <!-- Emoji/Sticker Icon -->
+                        <button class="p-1 rounded-full text-gray-500 hover:bg-gray-200 transition duration-150">
+                            <svg class="w-6 h-6" viewBox="0 0 512 512" fill="currentColor">
+                                <path d="M256,0C114.844,0,0,114.844,0,256s114.844,256,256,256s256-114.844,256-256S397.156,0,256,0z M256,490.667 C126.604,490.667,21.333,385.396,21.333,256S126.604,21.333,256,21.333S490.667,126.604,490.667,256S385.396,490.667,256,490.667 z" />
+                                <path d="M393.385,299.115c-5.781-1.385-11.49,2.177-12.844,7.906c-13.75,57.885-64.958,98.313-124.542,98.313 c-59.656,0-110.885-40.49-124.573-98.448c-1.365-5.75-7.146-9.24-12.833-7.938c-5.74,1.354-9.292,7.104-7.938,12.833 c15.979,67.646,75.75,114.885,145.344,114.885c69.51,0,129.26-47.167,145.292-114.708 C402.656,306.219,399.115,300.469,393.385,299.115z" />
+                                <circle cx="170.667" cy="192" r="21.333" />
+                                <circle cx="341.333" cy="192" r="21.333" />
+                            </svg>
+                        </button>
+
+                        <!-- Photo/Camera Icon -->
+                        <button class="p-1 rounded-full text-gray-500 hover:bg-gray-200 transition duration-150">
+                            <svg class="w-6 h-6" viewBox="0 0 480 480" fill="currentColor">
+                                <path d="M240,136c-57.438,0-104,46.562-104,104s46.562,104,104,104c57.41-0.066,103.934-46.59,104-104 C344,182.562,297.438,136,240,136z M240,328c-48.601,0-88-39.399-88-88c0-48.601,39.399-88,88-88 c48.577,0.057,87.943,39.423,88,88C328,288.601,288.601,328,240,328z" />
+                                <path d="M440,112h-56c-13.255,0-24-10.745-24-24c-0.026-22.08-17.92-39.974-40-40H160c-22.08,0.026-39.974,17.92-40,40 c0,13.255-10.745,24-24,24H40c-22.08,0.026-39.974,17.92-40,40v240c0.026,22.08,17.92,39.974,40,40h400 c22.08-0.026,39.974-17.92,40-40V152C479.974,129.92,462.08,112.026,440,112z M464,392c0,13.255-10.745,24-24,24H40 c-13.255,0-24-10.745-24-24V152c0-13.255,10.745-24,24-24h56c22.08-0.026,39.974-17.92,40-40c0-13.255,10.745-24,24-24h160 c13.255,0,24,10.745,24,24c0.026,22.08,17.92,39.974,40,40h56c13.255,0,24,10.745,24,24V392z" />
+                            </svg>
+                        </button>
+                        
+                        <!-- GIF Icon -->
+                        <button class="p-1 rounded-full text-gray-500 hover:bg-gray-200 transition duration-150">
+                            <svg class="w-6 h-6" viewBox="0 0 32 32" fill="currentColor">
+                                <path d="M8.00684834,10 C6.34621185,10 5,11.3422643 5,12.9987856 L5,20.0012144 C5,21.6573979 6.33599155,23 8.00684834,23 L24.9931517,23 C26.6537881,23 28,21.6577357 28,20.0012144 L28,12.9987856 C28,11.3426021 26.6640085,10 24.9931517,10 L8.00684834,10 L8.00684834,10 Z M7.99456145,11 C6.89299558,11 6,11.9001762 6,12.992017 L6,20.007983 C6,21.1081436 6.90234375,22 7.99456145,22 L25.0054385,22 C26.1070044,22 27,21.0998238 27,20.007983 L27,12.992017 C27,11.8918564 26.0976562,11 25.0054385,11 L7.99456145,11 L7.99456145,11 Z M13,17 L13,19 L10.9998075,19 C10.4437166,19 10,18.5523709 10,18.0001925 L10,14.9998075 C10,14.4437166 10.4476291,14 10.9998075,14 L14,14 L14,13 L11.0048815,13 C9.89761602,13 9,13.8865548 9,15.0059191 L9,17.9940809 C9,19.1019194 9.8938998,20 11.0048815,20 L14,20 L14,19.25 L14,19.25 L14,17 L14,16 L11,16 L11,17 L13,17 L13,17 Z M16,14 L16,19 L15,19 L15,20 L18,20 L18,19 L17,19 L17,14 L18,14 L18,13 L15,13 L15,14 L16,14 L16,14 Z M20,16 L20,14 L24,14 L24,13 L19,13 L19,20 L20,20 L20,17 L23,17 L23,16 L20,16 L20,16 Z" id="file-gif" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
+<!-- ////////////////// -->
         <!-- === Page 2: Qualification Survey === -->
         <div id="page-2" class="page-content">
             <h2 class="text-center text-danger fw-bold mb-4">Quick Qualification Survey</h2>
