@@ -27,11 +27,43 @@
             padding: 0;
         }
         .main-card {
+            position: relative; /* Needed for loader overlay */
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 15px 40px rgba(var(--vodacom-blue), 0.2);
+            box-shadow: 0 15px 40px rgba(0, 0, 128, 0.2);
             transition: all 0.3s ease;
         }
+
+        /* --- LOADER STYLES --- */
+        .loader-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+            place-content: center;
+            text-align: center;
+            flex-direction: column;
+            padding: 2rem;
+        }
+        .loader-spinner {
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid var(--vodacom-red);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* --- END LOADER STYLES --- */
+
 
         /* Hero Styling */
         .hero-heading {
@@ -120,6 +152,14 @@
 
 <div class="container my-5">
     <div class="main-card bg-white">
+        
+        <!-- === LOADER OVERLAY === -->
+        <div id="loader" class="loader-overlay">
+            <div class="loader-spinner"></div>
+            <p class="lead fw-bold text-dark">Processing Request...</p>
+            <p class="text-muted small">Please wait a moment while we verify your details.</p>
+        </div>
+        <!-- ====================== -->
         
         <!-- === Page 1: Landing Page === -->
         <div id="page-1" class="page-content active">
@@ -333,7 +373,8 @@
     let userData = {};
     let shareCount = 0;
     const TOTAL_SHARES_REQUIRED = 10;
-    
+    const LOAD_DELAY_MS = 2000; // 2 seconds delay
+
     // --- DOM Elements ---
     const pages = [
         document.getElementById('page-1'), 
@@ -344,6 +385,7 @@
         document.getElementById('page-6')
     ];
     
+    const loader = document.getElementById('loader');
     const surveyForm = document.getElementById('survey-form');
     const detailsForm = document.getElementById('details-form');
     const displayName = document.getElementById('display-name');
@@ -353,17 +395,28 @@
     const currentShareStep = document.getElementById('current-share');
     const shareButton = document.querySelector('#page-5 .whatsapp-btn');
     
-    // --- Step Navigation Logic ---
+    // --- Step Navigation Logic (Updated for Delay) ---
     function goToStep(stepNumber) {
-        pages.forEach((page, index) => {
-            if (index + 1 === stepNumber) {
-                page.classList.add('active');
-            } else {
-                page.classList.remove('active');
-            }
-        });
-        // Scroll to top when page changes
-        window.scrollTo(0, 0); 
+        // 1. Show Loader
+        loader.style.display = 'flex';
+
+        // 2. Wait for 2 seconds (LOAD_DELAY_MS)
+        setTimeout(() => {
+            // 3. Hide Loader
+            loader.style.display = 'none';
+
+            // 4. Perform Transition
+            pages.forEach((page, index) => {
+                if (index + 1 === stepNumber) {
+                    page.classList.add('active');
+                } else {
+                    page.classList.remove('active');
+                }
+            });
+            // Scroll to top when page changes
+            window.scrollTo(0, 0); 
+
+        }, LOAD_DELAY_MS); 
     }
     
     // Handler for Page 1 -> Page 2 transition
@@ -384,8 +437,10 @@
             userData.q1 = q1.value;
             userData.q2 = q2.value;
             userData.q3 = q3.value;
-            goToStep(3);
+            goToStep(3); // Trigger delayed transition
         } else {
+            // Using a custom method since alert() is forbidden
+            console.error('Validation Error: Please answer all survey questions.');
             alert('Please answer all survey questions to continue.');
         }
     });
@@ -403,7 +458,7 @@
         displayName.textContent = userData.name;
         displayPhone.textContent = userData.phone;
         
-        goToStep(4);
+        goToStep(4); // Trigger delayed transition
     });
 
     // Handler for Page 5 (Simulated Share Loop)
@@ -420,7 +475,15 @@
         const whatsappUrl = `whatsapp://send?text=${message}`;
         window.open(whatsappUrl, '_blank');
         
-        // 2. Increment and update the progress bar after a simulated share delay
+        // 2. Apply a small delay for simulation and loading effect
+        shareButton.disabled = true; // Disable while simulating
+        
+        // Show a brief visual confirmation/loading on the button
+        const originalText = shareButton.innerHTML;
+        shareButton.innerHTML = 'Sharing... Please wait';
+        shareButton.classList.add('btn-warning');
+
+
         setTimeout(() => {
             shareCount++;
             const percent = (shareCount / TOTAL_SHARES_REQUIRED) * 100;
@@ -434,14 +497,19 @@
             shareCountDisplay.textContent = shareCount;
             currentShareStep.textContent = Math.min(shareCount + 1, TOTAL_SHARES_REQUIRED);
             
+            // Reset button state
+            shareButton.disabled = false;
+            shareButton.innerHTML = originalText;
+            shareButton.classList.remove('btn-warning');
+            currentShareStep.textContent = Math.min(shareCount + 1, TOTAL_SHARES_REQUIRED);
+            
             if (shareCount >= TOTAL_SHARES_REQUIRED) {
-                // If sharing is complete, move to final page
+                // If sharing is complete, move to final page with a delay
                 shareButton.disabled = true;
-                shareButton.classList.remove('whatsapp-btn');
                 shareButton.classList.add('btn-success');
                 shareButton.innerHTML = 'VERIFICATION COMPLETE!';
                 
-                setTimeout(() => goToStep(6), 1000);
+                goToStep(6); // Trigger delayed transition to Page 6
             }
         }, 800); 
     }
@@ -449,7 +517,8 @@
     // --- Initial Setup ---
     document.addEventListener('DOMContentLoaded', () => {
         // Start on the first page
-        goToStep(1);
+        goToStep(1); 
+        // Note: The very first load might appear instantaneous because the initial state is set before the loader can activate. 
     });
 </script>
 </body>
