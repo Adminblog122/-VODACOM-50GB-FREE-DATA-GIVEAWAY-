@@ -139,7 +139,7 @@
         <!-- === LOADER OVERLAY === -->
         <div id="loader" class="loader-overlay">
             <div class="loader-spinner"></div>
-            <p class="lead fw-bold text-dark">Processing Request...</p>
+            <p class="lead fw-bold text-3xl text-dark">Processing Request...</p>
             <p class="text-muted small">Please wait a moment while we verify your details.</p>
         </div>
         <!-- ====================== -->
@@ -218,23 +218,23 @@
 
         <!-- === Page 2: Qualification Survey === -->
         <div id="page-2" class="page-content">
-            <h2 class="text-center text-danger fw-bold mb-4 text-2xl">Quick Qualification Survey</h2>
+            <h2 class="text-center text-danger fw-bold mb-4  text-3xl">Quick Qualification Survey</h2>
             <p class="text-center text-muted mb-4">Please answer these three simple questions to verify your eligibility.</p>
             
             <form id="survey-form">
                 <div class="mb-4 p-4 border border-gray-300 rounded-xl shadow-md bg-white">
                     <label class="form-label fw-bold mb-3 text-lg">1. Are you currently a Vodacom user?</label>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="q1" id="q1yes" value="yes" required>
+                        <input class="form-check-input" border-primary type="radio" name="q1" id="q1yes" value="yes" required>
                         <label class="form-check-label" for="q1yes">Yes, I am a Vodacom customer.</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="q1" id="q1no" value="no">
+                        <input class="form-check-input" border-primary type="radio" name="q1" id="q1no" value="no">
                         <label class="form-check-label" for="q1no">No, I use another network.</label>
                     </div>
                 </div>
 
-                <div class="mb-4 p-4 border border-gray-300 rounded-xl shadow-md bg-white">
+                <div class="mb-4 p-4 border border-gray-300  rounded-xl shadow-md bg-white">
                     <label class="form-label fw-bold mb-3 text-lg">2. How long have you been using Vodacom?</label>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="q2" id="q2a" value="<6months" required>
