@@ -158,50 +158,6 @@
 
        /* ///////////// */
 
-        /* 1. Reset: Use border-box for easy layout calculations. */
-*, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-/* 2. Media Fluidity: Images and videos must scale down. */
-img, video {
-    max-width: 100%;
-    height: auto; /* Preserve aspect ratio */
-    display: block;
-}
-
-/* 3. Main Container: Use percentages and max-width for fluid structure. */
-.container {
-    width: 96%; /* Always take up most of the screen */
-    max-width: 1400px; /* Prevent over-stretching on huge screens */
-    margin: 0 auto; /* Center the container */
-    padding: 1rem;
-}
-
-/* 4. Mobile-First Layout: Stack items vertically by default. */
-.grid-columns {
-    display: grid;
-    gap: 1.5rem;
-    /* On mobile, columns are stacked into a single column */
-    grid-template-columns: 1fr; 
-}
-
-/* 5. Breakpoint: Switch to two columns for screens 768px and wider (e.g., tablet/small desktop). */
-@media (min-width: 768px) {
-    .grid-columns {
-        grid-template-columns: repeat(2, 1fr); /* Two equal columns */
-    }
-}
-
-/* 6. Breakpoint: Switch to four columns for screens 1280px and wider (desktop). */
-@media (min-width: 1280px) {
-    .grid-columns {
-        grid-template-columns: repeat(4, 1fr); /* Four equal columns */
-    }
-}
-        
         /* ///////////////////// */
 
     </style>
@@ -211,7 +167,7 @@ img, video {
     <div class="main-card bg-white">
         
         <!-- === LOADER OVERLAY === -->
-       <div id="loader" class="loader-overlay"><br>
+       <div id="loader" class="loader-overlay"><br><br>
               <center><img 
             src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg8RO9Wma2AdKMpVctu1by0gw_u8CQBwtERZuIC9iQXOFtq4fXbURZYW60iEYZxV7y_kCLC2CoQf55Y9anxSDiE63SgiczH3NTE10e-5O-f7OEhclmiyTokq4BtbpplGE4GPaOexkh5dnCUQwh_dMKBQH_oMFplj7tW9g-NtjEPVt-09tmbjWotKHziQt8/s320/347664208_288773583486483_3685118261920947467_n.png" 
             alt="Fixed Button"
