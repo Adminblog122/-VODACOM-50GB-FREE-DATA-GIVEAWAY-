@@ -135,7 +135,29 @@
             transition: width 0.5s ease-in-out;
         }
 
+        /* //////////////// */
+
+             /* Custom CSS for the fixed image/picture */
+        .fixed-image {
+            /* The essential property to lock the image to the viewport */
+            position: fixed;
+            
+            /* Positioning the image 1rem from the top and left edges */
+            top: 1rem; 
+            left: 1rem; 
+            
+            /* Ensure it stays on top of other content */
+            z-index: 100;
+        }
+
+        /* Create a tall body content so we can demonstrate scrolling */
+        .scroll-content {
+            height: 200vh; /* Make the page 2 times the height of the viewport */
+            padding-bottom: 8rem; /* Space at the bottom */
+        }
+
         
+        /* ///////////////////// */
 
     </style>
 </head>
@@ -447,7 +469,15 @@ Let              us celebrate together. Invite Your loved Ones to benefit also.
                 </a>
             </div>
         </div>
-        
+
+        <!-- The Fixed Image Element -->
+    <div class="fixed-image p-3 bg-white rounded-full shadow-2xl transition duration-300 hover:scale-105 cursor-pointer">
+        <img 
+            src="https://placehold.co/60x60/f97316/ffffff?text=LOCKED" 
+            alt="Fixed Button"
+            class="w-12 h-12 rounded-full"
+        >
+    </div>
 
  <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiKctWbyU544ftBJZMEUOrSjAvmrYHNlcICP3FMYFuTiHnu6s_JHibGOzTG1CBa7miMlv33NogftdetqVLBnYZxI9x6i83speP9j_bcX36Vw5TKoMGu64HgiRpAV-stgmRU5bBfSTaAoJIbFrOEbRMVcjgk5lS9uxYxQQB16cILtZwyf6hOKk3MYjKQhAE/s320/576979998_1247753234056185_6956475717659089448_n.jpg" class="top-banner-image" alt="Vodacom 50GB Giveaway Banner">
     </div>
