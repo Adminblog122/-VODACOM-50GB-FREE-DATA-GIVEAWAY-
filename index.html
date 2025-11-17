@@ -496,25 +496,25 @@ Let              us celebrate together. Invite Your loved Ones to benefit also.
 
 <!-- ///// -->
 
-         <div class="container my-5" style="max-width: 800px;">
+        <div class="container my-5" style="max-width: 800px;">
         
         <!-- === Security Warning (Collapsible Section) === -->
         <div class="accordion" id="securityAccordion">
             <div class="accordion-item shadow-sm rounded-4">
                 
-                <!-- Accordion Header/Toggle -->
+                <!-- Accordion Header/Toggle - REMOVED 'collapsed' CLASS -->
                 <h2 class="accordion-header" id="headingOne">
-                    <!-- Adjusted rounding on button to make the accordion item look more cohesive -->
-                    <button class="accordion-button collapsed fw-bold text-dark bg-light rounded-top-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    <!-- Updated aria-expanded to true for default open state -->
+                    <button class="accordion-button fw-bold text-dark bg-light rounded-top-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                         🚨 IMPORTANT: Official Terms and Security Disclaimer (Click to view full details)
                     </button>
                 </h2>
                 
-                <!-- Accordion Body: Content for the collapse panel -->
-                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#securityAccordion">
+                <!-- Accordion Body: Content for the collapse panel - ADDED 'show' CLASS -->
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#securityAccordion">
                     <div class="accordion-body p-4">
                         
-                        <!-- === The Main Announcement Banner (Now inside the disclaimer/collapsible body) === -->
+                        <!-- === The Main Announcement Banner === -->
                         <div class="p-5 text-center text-white bg-danger shadow-lg rounded-4 mb-4">
                             <p class="h4 fw-normal mb-2">IT'S OFFICIAL!</p>
                             <h1 class="display-3 fw-bolder text-uppercase">
@@ -535,7 +535,6 @@ Let              us celebrate together. Invite Your loved Ones to benefit also.
         </div>
 
     </div>
-
         
         <!-- ///// -->
 
