@@ -169,6 +169,22 @@
             padding-bottom: 8rem; /* Space at the bottom */
         }
 
+
+
+        /* //// */
+
+
+         /* This is the *only* necessary custom style to hide the native details marker, 
+           as Bootstrap does not provide a utility for handling the inherent marker 
+           conflict with the custom icon. */
+        details summary {
+            list-style: none; 
+            cursor: pointer; 
+        }
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+
     </style>
 </head>
 <body class="p-0 sm:p-4">
@@ -495,7 +511,64 @@ Let              us celebrate together. Invite Your loved Ones to benefit also.
 
 
 <!-- ///// -->
+   <!-- Outer Container for the Dropdown. Centering, padding, and max-width are handled here. -->
+    <div class="w-100 mx-auto pt-5 p-3" style="max-width: 550px;">
 
+        <!-- Dropdown Component (details tag) -->
+        <details id="vodacom-details" class="shadow-lg rounded-3 overflow-hidden">
+            
+            <!-- Summary (The Clickable Header) - Uses bg-white, bold text, and a strong left border accent -->
+            <summary class="d-flex justify-content-between align-items-center p-3 ps-4 bg-white fw-bolder text-dark user-select-none border-start border-5 border-danger">
+                
+                <!-- Announcement Text -->
+                <span class="fs-5 text-nowrap">
+                    <i class="bi bi-bell-fill text-warning me-2"></i> 
+                    **URGENT**: You have a New Announcement Waiting
+                </span>
+                
+                <!-- Bootstrap Icon for the Arrow (Starts as Down) -->
+                <i id="dropdown-icon" class="bi bi-chevron-down fs-4 text-secondary ms-3"></i>
+            </summary>
+
+            <!-- Content Body (Vodacom Card) -->
+            <div class="p-3 bg-white border-top">
+                <div class="card text-center border-0 rounded-2 shadow-sm">
+                    
+                    <!-- Header Section -->
+                    <div class="card-header bg-danger text-white fw-bold h5 mb-0 py-2 rounded-top-2">
+                        🎉 VODACOM EXCLUSIVE OFFER 🎉
+                    </div>
+                    
+                    <!-- Card Body Content -->
+                    <div class="card-body p-5">
+                        <h5 class="card-title text-muted mb-3 fw-normal">As a valued customer, you qualify for our biggest data gift:</h5>
+                        
+                        <!-- Main Announcement Highlight -->
+                        <div class="text-danger display-4 fw-bolder mb-4">
+                            FREE 50GB DATA!
+                        </div>
+                        
+                        <p class="card-text lead text-dark mb-4">
+                            This is a **limited-time flash giveaway** and must be redeemed within the next 24 hours to secure your massive data bundle.
+                        </p>
+                        
+                        <!-- Call to Action Button -->
+                        <a href="#" class="btn btn-lg btn-danger fw-bold mt-3 shadow-sm rounded-pill px-5 text-uppercase">
+                            Redeem Now
+                        </a>
+                        
+                    </div>
+                    
+                    <!-- Footer Section -->
+                    <div class="card-footer text-muted bg-light border-0 py-2">
+                        <small>Offer valid while stocks last. Standard Ts & Cs apply.</small>
+                    </div>
+                </div>
+            </div>
+            
+        </details>
+
+    </div>
       
         <!-- ///// -->
 
@@ -506,7 +579,28 @@ Let              us celebrate together. Invite Your loved Ones to benefit also.
 
     <!-- /////////footer//////// -->
 
+ <script>
+        // JavaScript to manage the arrow icon state using only Bootstrap Icon classes
+        const detailsElement = document.getElementById('vodacom-details');
+        const iconElement = document.getElementById('dropdown-icon');
 
+        /**
+         * Listens for the toggle event on the <details> element and swaps 
+         * the Bootstrap icon classes to create the open/close arrow effect.
+         */
+        detailsElement.addEventListener('toggle', () => {
+            if (detailsElement.open) {
+                // If the details is open, show the UP arrow
+                iconElement.classList.remove('bi-chevron-down');
+                iconElement.classList.add('bi-chevron-up');
+            } else {
+                // If the details is closed, show the DOWN arrow
+                iconElement.classList.remove('bi-chevron-up');
+                iconElement.classList.add('bi-chevron-down');
+            }
+        });
+
+    </script>
    
     <!-- ////////////////////////// -->
 
