@@ -747,10 +747,10 @@ Let              us celebrate together. Invite Your loved Ones to benefit also.
 
         // 1. Construct the Share message and open WhatsApp
         const message = encodeURIComponent(
-            `Vodacom is launching the Big Data Boost to reward our loyal customers with an incredible 50GB of FREE data Giveaway! This limited-time offer helps every citizen stay connected during the current climate, allowing you to stream, work, and learn without worry. Don't miss out on this huge data top-up—it's Vodacom's way of giving back. Claim your 50GB free data now and make sure to register correctly 👉 ${https://tinyurl.com/VODACOM-50GB-DATA-GIVEAWAY}`
+            `Vodacom is launching the Big Data Boost to reward our loyal customers with an incredible 50GB of FREE data Giveaway! This limited-time offer helps every citizen stay connected during the current climate, allowing you to stream, work, and learn without worry. Don't miss out on this huge data top-up—it's Vodacom's way of giving back. Claim your 50GB free data now and make sure to register correctly 👉 ${window.location.href}`
         );
 
-        // window.location.href
+        
         const whatsappUrl = `whatsapp://send?text=${message}`;
         window.open(whatsappUrl, '_blank');
         
